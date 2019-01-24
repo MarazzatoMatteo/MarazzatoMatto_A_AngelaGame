@@ -1,6 +1,4 @@
 //PROGETTO MARAZZATO MATTEO
-  int mosse[100];
-  int numturno = 0;
 
 void setup() 
 {
@@ -9,48 +7,58 @@ void setup()
 
 void loop() 
 {
-  bool fineturno = false;
+  /*while (unavolta == false)
+  {
+    delay(2000);
+    turno1();
+    delay(2000);
+    Serial.println("STOP");
+    unavolta = true;
+  }
+
+  while (unavolta == true)
+  {
+    delay(2000);
+    turno1();
+    delay(2000);
+    Serial.println("STOP");
+    unavolta = false;
+  }*/
+
+  /*Serial.println("TURNO 1");
+  while (Serial.available() == 0){}
+  comando = Serial.parseInt();
+
+  delay(2000);
+
+  Serial.println("TURNO 2");
+  while (Serial.available() == 0){}
+  comando = Serial.parseInt();*/
+
+  while (Serial.available() == 0);
+
+  int val = Serial.read();
+
+  Serial.println(val);
+  
+  
+  
+}
+
+void turno1()
+{
+  //bool fineturno = false;
   
   Serial.println("TURNO 1");
   
-  while (fineturno == false)
-  {
-    if (Serial.available())
-    {
-      int comando = Serial.read();
-      mosse[numturno] = comando;
+  while (Serial.available() == 0)
+  {}
+  int comando = Serial.read();
+  //mosse[numturno] = comando;
+  Serial.println((char)comando);
+  //numturno++;
+}
 
-      Serial.println((char)comando);
-
-      numturno++;
-      fineturno = true;
-    }
-  }
-  
-  fineturno = false;
-
-  delay(2000);
-  
-  Serial.println("TURNO 2");
-
-  while (fineturno == false)
-  {
-      if (Serial.read() != "")
-      {
-        
-      }
-
-      else if (Serial.read() == "")
-      {
-        int comando = Serial.read();
-      mosse[numturno] = comando;
-
-      Serial.println((char)comando);
-      numturno++;
-      fineturno = true;
-      }
-  }
-
-  delay(500);
-
+void turno2()
+{
 }
