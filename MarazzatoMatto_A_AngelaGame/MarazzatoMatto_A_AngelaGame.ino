@@ -1,4 +1,4 @@
-//PROGETTO MARAZZATO MATTEO
+//  Copyright ITT Eugenio Barsanti / Prodcued by MARAZZATO MATTEO - 4BI  //
 
 int mossa1;
 int mossa2;
@@ -15,10 +15,9 @@ void setup()
   nummeta = 0;
   sommamosse = 0;
   giocvincitore = 2;
-  //mossa1 = -1;
-  //mossa2 = -1;
   numturno = 0;
   Serial.println("INIZIO PARTITA");
+  Serial.println(" ");
 }
 
 void loop() 
@@ -30,6 +29,8 @@ void loop()
     inserisciGiocata();
       delay(1000);
   }
+
+  cambiaTurno();
 
   if (sommamosse != nummeta && sommamosse < nummeta)
   {
@@ -47,7 +48,8 @@ void loop()
     delay(1000);
 }
 
-int giocatore1()
+
+void giocatore1()
 {
   Serial.println("GIOCATORE 1");
   while (giocvincitore == 2)
@@ -57,6 +59,8 @@ int giocatore1()
     if (numturno == 1 && mossa1 >= 0 && mossa1 < 7)
     {
       sommamosse = sommamosse + mossa1;
+      Serial.println("Mossa GIOCATORE 1: " + String(mossa1));
+      delay(500);
       Serial.println("La somma totale è: " + String(sommamosse));
       giocvincitore = 1;
     }
@@ -64,7 +68,7 @@ int giocatore1()
     else if (mossa1 != mossa2 && mossa1 > 0 && mossa1 < 7 && mossa1 != (7 - mossa2))
     {
       sommamosse = sommamosse + mossa1;
-      Serial.println("Mossa precedente: " + String(mossa2));
+      Serial.println("Mossa GIOCATORE 1: " + String(mossa1));
       delay(500);
       Serial.println("La somma totale è: " + String(sommamosse));
       giocvincitore = 1;
@@ -77,7 +81,7 @@ int giocatore1()
   }
 }
 
-int giocatore2()
+void giocatore2()
 {
   Serial.println("GIOCATORE 2");
   while (giocvincitore == 1)
@@ -87,10 +91,11 @@ int giocatore2()
     if (mossa2 != mossa1 && mossa2 >= 0 && mossa2 < 7 && mossa2 != (7 - mossa1))
     {
       sommamosse = sommamosse + mossa2;
-      Serial.println("Mossa precedente: " + String(mossa1));
+      Serial.println("Mossa GIOCATORE 2: " + String(mossa2));
       delay(500);
       Serial.println("La somma totale è: " + String(sommamosse));
       giocvincitore = 2;
+      Serial.println(" ");
     }
 
     else 
@@ -117,8 +122,7 @@ void inserisciGiocata()
     start = false;
     Serial.println("Il numero da raggiungere è: " + String(nummeta));
       delay(500);
-      numturno++;
-    Serial.println("TURNO " + String(numturno));
+    Serial.println(" ");
   }
   //itoa(nummeta,convertitore, 10); //permette di convertire un numero in stringa itoa(n,c,b) n=numero da convertire - c=grandezza array o buffer (maggiore del numero di cifre del numero) - b=base in cui è scritto il numero (2 binaria, 10 decimale, 16 esadecimale)
   delay(1000);
@@ -129,6 +133,7 @@ void vittoria()
   if (sommamosse == nummeta)
   {
     Serial.println("Ha vinto il GIOCATORE: " + String(giocvincitore));
+    Serial.println(" ");
     reset();
   }
 
@@ -138,6 +143,7 @@ void vittoria()
     {
       giocvincitore = 2;
       Serial.println("Ha vinto il GIOCATORE: " + String(giocvincitore));
+      Serial.println(" ");
       reset();
     }
     
@@ -145,24 +151,27 @@ void vittoria()
     {
       giocvincitore = 1;
       Serial.println("Ha vinto il GIOCATORE: " + String(giocvincitore));
+      Serial.println(" ");
       reset();
     }
   }
 
-  else
-  {
-    numturno++;
-    Serial.println("TURNO " + String(numturno));
-  }
+  else{}
+}
+
+void cambiaTurno()
+{
+  numturno++;
+  Serial.println("TURNO " + String(numturno));
 }
 
 void reset()
 {
   sommamosse = 0;
   giocvincitore = 2;
-  numturno = 1;
+  numturno = 0;
   nummeta = 0;
-  //mossa1 = -1;
-  //mossa2 = -1;
   start = true;
 }
+
+//  Copyright ITT Eugenio Barsanti / Prodcued by MARAZZATO MATTEO - 4BI  //
