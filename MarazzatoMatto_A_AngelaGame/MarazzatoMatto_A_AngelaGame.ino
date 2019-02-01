@@ -1,4 +1,4 @@
-//  Copyright ITT Eugenio Barsanti / Prodcued by MARAZZATO MATTEO - 4BI  //
+//  Copyright ITT Eugenio Barsanti / Produced by MARAZZATO MATTEO - 4BI  //
 
 int mossa1;
 int mossa2;
@@ -174,4 +174,4 @@ void reset()
   start = true;
 }
 
-//  Copyright ITT Eugenio Barsanti / Prodcued by MARAZZATO MATTEO - 4BI  //
+//  Copyright ITT Eugenio Barsanti / Produced by MARAZZATO MATTEO - 4BI  //
